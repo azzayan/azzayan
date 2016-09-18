@@ -1,6 +1,3 @@
-/**
- * Created by az on 7/31/16.
- */
 var webpackMerge = require('webpack-merge');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var commonConfig = require('./webpack.common.js');

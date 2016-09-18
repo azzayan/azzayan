@@ -1,0 +1,34 @@
+.contactContainer {
+  text-align: center;
+  :global {
+    .text-primary {
+      color: #428bca;
+    }
+  }
+  a{
+    color: #428bca;
+  }
+  .email {
+    padding: 5rem;
+
+  }
+  .phoneNumber {
+    padding: 5rem;
+  }
+  &:before {
+    content: ' ';
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: .2;
+    background-image: url('./../../../images/background/braums.jpg');
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    background-size: cover;
+    filter: blur(2px);
+  }  
+}

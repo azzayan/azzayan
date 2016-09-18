@@ -1,6 +1,3 @@
-/**
- * Created by az on 7/31/16.
- */
 var webpack = require('webpack');
 var webpackMerge = require('webpack-merge');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -15,8 +12,7 @@ module.exports = webpackMerge(commonConfig, {
     debug: false,
 
     output: {
-        path: helpers.root('.'),
-        publicPath: '/',
+        path: helpers.root('dist'),
         filename: '[name].[hash].min.js',
         chunkFilename: '[id].[hash].chunk.js'
     },
@@ -33,7 +29,7 @@ module.exports = webpackMerge(commonConfig, {
         new ExtractTextPlugin('[name].[hash].css'),
         new webpack.DefinePlugin({
             'process.env': {
-                'ENV': JSON.stringify(ENV)
+                'NODE_ENV': JSON.stringify(ENV)
             }
         }),
         new Visualizer()

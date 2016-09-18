@@ -1,41 +1,38 @@
-/**
- * Created by az on 7/31/16.
- */
-import React from 'react';
-import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {AppBar, Drawer, MenuItem, Subheader} from 'material-ui';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
-var drawerOpen = false;
-function toggleDrawer() {
-    drawerOpen = !drawerOpen;
-    render();
-}
-const App = () => (
-     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-        <div>
-            <AppBar title="Welcome, I am AZ"
-                    onLeftIconButtonTouchTap={toggleDrawer}
-                    iconClassNameRight="muidocs-icon-navigation-expand-more">
-            </AppBar>
-            <h2>Coming soon...</h2>
-            <Drawer open={drawerOpen} docked={false}>
-                <MenuItem onTouchTap={toggleDrawer}>Close me...</MenuItem>
-            </Drawer>
-        </div>
-    </MuiThemeProvider>
+//React
+import React, {Component, PropTypes} from 'react';
+import {render} from 'react-dom';
+//React redux, router
+import {Provider} from 'react-redux'
+import {Router, Route, useRouterHistory, IndexRedirect} from 'react-router'
+import {syncHistoryWithStore} from 'react-router-redux'
+import createHashHistory from 'history/lib/createHashHistory'
+//My Stuff
+import {HOME, ABOUT, CONTACT, EXPERIENCE} from '../constants/routes';
+import store from '../stores/createStore';
+import MainLayout from '../components/MainLayout'
+import HomeCmp from '../components/Home';
+import ContactCmp from '../components/Contact';
+import AboutCmp from '../components/About';
+import ExperienceCmp from '../components/Experience';
+import PageNotFound from '../components/PageNotFound';
+// Create an enhanced history that syncs navigation events with the store
+const history = syncHistoryWithStore(
+    useRouterHistory(createHashHistory)({queryKey: false}),
+    store
 );
-render();
 
-function render() {
-    ReactDOM.render(
-        <App />,
-        document.getElementById('content')
-    );
-}
+render(
+    <Provider store={store}>
+        <Router history={history}>
+            <Route path="/" component={MainLayout}>
+                <Route path={HOME} component={HomeCmp}/>
+                <Route path={ABOUT} component={AboutCmp}/>
+                <Route path={CONTACT} components={ContactCmp}/>
+                <Route path={EXPERIENCE} components={ExperienceCmp}/>
+                <Route path="*" component={PageNotFound}/>
+                <IndexRedirect to={HOME.toLowerCase()}/>
+            </Route>
+        </Router>
+    </Provider>,
+    document.getElementById("content")
+);
