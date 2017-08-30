@@ -20,7 +20,7 @@ const Contact = ()=>(
                 <i className="fa fa-circle fa-stack-2x text-primary"></i>
                 <i className="fa fa-phone fa-stack-1x fa-inverse"></i>
               </span>
-                <h4>(214) 566-8124</h4>
+                <h4>(469) 607-9580</h4>
             </a>
         </div>
     </div>
