@@ -28,7 +28,7 @@ export default class Home extends Component {
         return (
             <div className={style.homeContainer}>
                 <img className={style.profileImg} src={profileImage}/>
-                <div className={style.profileDescription}>You know I look good</div>
+                <div className={style.profileDescription}>I don't know what you heard about me...</div>
                 <ul className={style.navList}>
                     {navLinks}
                 </ul>
