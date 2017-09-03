@@ -15,7 +15,7 @@ const Contact = ()=>(
             </a>
         </div>
         <div className={style.phoneNumber}>
-            <a href="tel:1-214-566-8124">
+            <a href="tel:1-469-607-9580">
               <span className="fa-stack fa-4x">
                 <i className="fa fa-circle fa-stack-2x text-primary"></i>
                 <i className="fa fa-phone fa-stack-1x fa-inverse"></i>
